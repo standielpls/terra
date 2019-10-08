@@ -1,0 +1,13 @@
+language: go
+go: 1.12.x
+cache_components: 
+before_install:
+- openssl aes-256-cbc -K $encrypted_154ea34422e0_key -iv $encrypted_154ea34422e0_iv
+  -in key.json.enc -out key.json -d
+install: 
+before_script: 
+script: make build
+deploy: 
+  provider: gae
+  keyfile: key.json
+  project: stanproj1
